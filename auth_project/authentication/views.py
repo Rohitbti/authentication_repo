@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic.edit import CreateView,FormView
 from .forms import MyPasswordResetForm, MyUserCreationForm
 from django.urls import reverse_lazy
-from .forms import LoginForm, MyPasswordChangeForm,MyPasswordResetForm,SetPasswordForm
+from .forms import LoginForm, MyPasswordChangeForm,MyPasswordResetForm,SetPasswordForm,storeForm
 from django.contrib.auth import authenticate, get_user_model,login,logout
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -34,7 +34,7 @@ def register(request):
             )
             new_user.save()
             form = MyUserCreationForm()
-            messages.success(request,"Registration done you can sign in now.")
+            messages.success(request,"Registration successfull, you can sign in now.")
             return redirect("/login",{'form':form})
     else:
         form = MyUserCreationForm()
@@ -146,3 +146,16 @@ class PasswordResetConfirmView(FormView):
         else:
             messages.error(request,'The reset password link is no longevalid.')
             return self.form_invalid(form)
+    
+def addStore(request):
+    form = storeForm(request.POST or None)
+    if request.method == "POST":
+        # form = storeForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Store added")
+            return redirect("/home")
+        else:
+            messages.error(request,"validation error")
+            # form = storeForm(request.POST or None)
+    return render(request,"add_store.html",{'form':form})

@@ -1,6 +1,6 @@
 
 from django import forms
-from authentication.models import MyUser
+from authentication.models import MyUser,Store
 from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm,PasswordResetForm
 
 class MyUserCreationForm(UserCreationForm):
@@ -153,3 +153,15 @@ class SetPasswordForm(forms.Form):
                  "name":"pass"
             }
         ))
+class storeForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "name",
+                "class":"input100",
+                 "name":"name"
+            }
+        ))
+    class Meta:
+        model = Store
+        fields = ('name',)

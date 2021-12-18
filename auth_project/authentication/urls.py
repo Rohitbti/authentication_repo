@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/',views.login_view, name="login"),
     path('logout/',views.logout_user, name="logout"),
     path('home/',views.home, name="home"),
+    path('add_store/',views.addStore, name="add_store"),
     path('change_password/',views.change_password_view, name="change_password"),
     url(r'^password_reset/$',views.reset_password_view, name='password_reset'),
     url(r'^password_reset/done/$',PasswordResetDoneView.as_view(template_name='reset_password_done.html'), name='password_reset_done'),

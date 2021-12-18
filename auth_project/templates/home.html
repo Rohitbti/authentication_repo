@@ -19,6 +19,7 @@
     <div class="container">
         {% comment %} <h2 class="mt-5">Hello {{ user.first_name }} !! This is Home Page</h2> <br> {% endcomment %}
         <h2 class="mt-5">Hello {{ request.session.user }} !! This is Home Page</h2> <br>
+        <a href="{% url 'add_store' %} ">Add Store</a> &emsp;&emsp;&emsp;&emsp;
         <a href="{% url 'logout' %} ">Logout</a> &emsp;&emsp;&emsp;&emsp;
         <a href="{% url 'change_password' %} ">Change Password</a>
     </div>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MyUser
+from .models import MyUser,Store
 from django.contrib.auth.admin import UserAdmin
 from . import forms
 
@@ -10,3 +10,4 @@ class MyUserAdmin(UserAdmin):
             (None, {'fields': ('mobile_number',)}),
     ) 
 admin.site.register(MyUser,MyUserAdmin)
+admin.site.register(Store)
